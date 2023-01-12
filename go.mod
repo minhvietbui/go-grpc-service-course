@@ -1,4 +1,4 @@
-module github.com/vietbm-hcm/go-grpc-services-source
+module github.com/vietbm-hcm/go-grpc-service-course
 
 go 1.19
 
