@@ -1,4 +1,4 @@
-//go:generate mockgen -destination=rocket_mocks_test.go -package=rocket github.com/vietbm-hcm/go-grpc-service-course/internal/rocket Store  
+//go:generate mockgen -destination=rocket_mocks_test.go -package=rocket github.com/vietbm-hcm/go-grpc-service-course/internal/rocket Store
 
 package rocket
 
@@ -7,9 +7,9 @@ import "context"
 // Rocket - should contain the definition of our
 // rocket
 type Rocket struct {
-	ID string
-	Name string
-	Type string
+	ID      string
+	Name    string
+	Type    string
 	Flights int
 }
 
@@ -21,7 +21,7 @@ type Store interface {
 	DeleteRocket(id string) error
 }
 
-// Service - our rocket service, reponsible for 
+// Service - our rocket service, reponsible for
 // updating the rocket inventory
 type Service struct {
 	Store Store
@@ -34,7 +34,7 @@ func New(store Store) Service {
 	}
 }
 
-// GetRocketByID - retrieves a rocket based on the ID from the store 
+// GetRocketByID - retrieves a rocket based on the ID from the store
 func (s Service) GetRocketByID(ctx context.Context, id string) (Rocket, error) {
 	rkt, err := s.Store.GetRocketByID(id)
 	if err != nil {
@@ -53,7 +53,7 @@ func (s Service) InsertRocket(ctx context.Context, rkt Rocket) (Rocket, error) {
 }
 
 // DeleteRocket - delete a rocket from our inventory
-func (s Service) DeleteRocket(id string) error {
+func (s Service) DeleteRocket(ctx context.Context, id string) error {
 	err := s.Store.DeleteRocket(id)
 	if err != nil {
 		return err
